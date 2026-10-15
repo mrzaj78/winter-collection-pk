@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b0d">
+  <title>Winter Collection PK | Winter Wear</title>
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --panel: #151518;
+      --panel2: #1d1d22;
+      --text: #f7f7f8;
+      --muted: #b7b7c0;
+      --gold: #d8b36a;
+      --gold2: #f0d79e;
+      --line: #34343b;
+      --danger: #ffb4ab;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.5;
+    }
+    a { color: inherit; }
+    button, input, select, textarea { font: inherit; }
+    .topbar {
+      background: #050506; border-bottom: 1px solid var(--line);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .nav {
+      max-width: 1120px; margin: auto; padding: 13px 18px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .brand { font-weight: 900; letter-spacing: .3px; font-size: 1.02rem; }
+    .brand span { color: var(--gold); }
+    .nav a { text-decoration: none; color: var(--muted); font-size: .9rem; }
+    .hero {
+      max-width: 1120px; margin: auto; padding: 52px 18px 35px;
+      display: grid; grid-template-columns: 1.15fr .85fr; gap: 24px; align-items: center;
+    }
+    .eyebrow { color: var(--gold); font-size: .78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 800; }
+    h1 { font-size: clamp(2.1rem, 6vw, 4.2rem); line-height: 1.04; margin: 12px 0; letter-spacing: -1.7px; }
+    .hero p { color: var(--muted); max-width: 540px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--gold); color: #17130b; font-weight: 800; border: 0;
+      padding: 12px 17px; border-radius: 10px; text-decoration: none; cursor: pointer;
+    }
+    .btn:hover { background: var(--gold2); }
+    .btn.secondary { background: transparent; color: var(--text); border: 1px solid var(--line); }
+    .hero-art {
+      min-height: 250px; border: 1px solid #4a4030; border-radius: 22px;
+      background: radial-gradient(ellipse at 50% 20%, #4d3d25 0, #1b1916 43%, #101012 75%);
+      display: grid; place-items: center; overflow: hidden; position: relative;
+    }
+    .hero-art:before, .hero-art:after { content:""; position:absolute; border:1px solid #8e7446; border-radius:50%; width:230px;height:230px; opacity:.25; }
+    .hero-art:after { width:300px;height:300px; }
+    .coat-icon { font-size: 8rem; filter: drop-shadow(0 18px 20px #000); position: relative; z-index: 1; }
+    .hero-label { position:absolute; bottom:17px; right:17px; color:var(--gold2); font-size:.78rem; letter-spacing:2px; }
+    .trust-row { max-width:1120px; margin:auto; padding:0 18px 28px; display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+    .trust { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:12px; text-align:center; color:var(--muted); font-size:.86rem; }
+    .trust strong { color:var(--text); display:block; font-size:.95rem; }
+    main { max-width:1120px; margin:auto; padding:10px 18px 48px; }
+    .section-head { display:flex; justify-content:space-between; align-items:end; gap:14px; margin:18px 0; }
+    h2 { margin:0; font-size:1.65rem; }
+    .section-head p { margin:4px 0 0; color:var(--muted); font-size:.92rem; }
+    .grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:15px; }
+    .product { border:1px solid var(--line); background:var(--panel); border-radius:16px; overflow:hidden; }
+    .product-art { min-height:175px; display:grid; place-items:center; font-size:5rem; position:relative; background:linear-gradient(140deg,#29292e,#111113); }
+    .product-art.brown { background:linear-gradient(140deg,#473324,#17120f); }
+    .product-art.gray { background:linear-gradient(140deg,#3b3d43,#141519); }
+    .tag { position:absolute; top:12px; left:12px; background:#080809d9; border:1px solid #57504a; color:var(--gold2); padding:4px 8px; border-radius:30px; font-size:.72rem; }
+    .product-info { padding:14px; }
+    .product h3 { margin:0 0 6px; font-size:1.04rem; }
+    .description { color:var(--muted); font-size:.86rem; min-height:38px; margin:0 0 10px; }
+    .price-row { display:flex; align-items:baseline; gap:8px; margin-bottom:12px; }
+    .price { font-weight:900; color:var(--gold2); font-size:1.18rem; }
+    .old-price { color:#888892; text-decoration:line-through; font-size:.84rem; }
+    .product .btn { width:100%; padding:10px; }
+    .notice { margin:18px 0; border:1px solid #55452a; background:#211b11; padding:13px 14px; border-radius:12px; color:#ead9b6; font-size:.88rem; }
+    .order-section { display:grid; grid-template-columns:.8fr 1.2fr; gap:18px; margin-top:42px; align-items:start; }
+    .order-aside, .form-card { border:1px solid var(--line); background:var(--panel); border-radius:16px; padding:18px; }
+    .order-aside p { color:var(--muted); font-size:.92rem; }
+    .steps { padding-left:20px; color:var(--muted); font-size:.9rem; }
+    .field-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .field { display:flex; flex-direction:column; gap:6px; margin-bottom:12px; }
+    label { font-weight:700; font-size:.88rem; }
+    input, select, textarea {
+      width:100%; color:var(--text); background:#0d0d10; border:1px solid #414149;
+      border-radius:9px; padding:11px 12px; outline:none;
+    }
+    input:focus, select:focus, textarea:focus { border-color:var(--gold); box-shadow:0 0 0 2px #d8b36a20; }
+    textarea { min-height:82px; resize:vertical; }
+    .selected-summary { color:var(--muted); background:#0d0d10; border:1px solid var(--line); padding:10px; border-radius:9px; margin-bottom:12px; font-size:.9rem; }
+    .form-card .btn { width:100%; }
+    .small { font-size:.78rem; color:var(--muted); }
+    footer { border-top:1px solid var(--line); padding:24px 18px; text-align:center; color:var(--muted); font-size:.85rem; }
+    .whatsapp-float {
+      position:fixed; bottom:16px; right:16px; z-index:20; border-radius:99px;
+      background:#25d366; color:#052b14; padding:12px 15px; text-decoration:none; font-weight:900;
+      box-shadow:0 5px 25px #0009;
+    }
+    @media (max-width:760px) {
+      .hero { grid-template-columns:1fr; padding-top:35px; }
+      .hero-art { min-height:190px; }
+      .coat-icon { font-size:6rem; }
+      .grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+      .product-art { min-height:135px; font-size:4rem; }
+      .product-info { padding:11px; }
+      .description { min-height:58px; }
+      .order-section { grid-template-columns:1fr; }
+    }
+    @media (max-width:420px) {
+      .grid { grid-template-columns:1fr; }
+      .product-art { min-height:180px; }
+      .description { min-height:0; }
+      .field-grid { grid-template-columns:1fr; gap:0; }
+      .trust-row { grid-template-columns:1fr; }
+      .nav a { font-size:.82rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="Main navigation">
+      <div class="brand">WINTER <span>COLLECTION PK</span></div>
+      <a href="#products">Shop Winter Wear ↓</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Winter Collection • Pakistan</div>
+      <h1>Stay warm.<br><span style="color:var(--gold)">Look sharp.</span></h1>
+      <p>Discover winter jackets, coats and everyday cold-weather essentials. Choose your item and send your order details directly to us on WhatsApp.</p>
+      <a class="btn" href="#products">Explore Products</a>
+      <a class="btn secondary" href="#order" style="margin-left:6px">Place an Order</a>
+    </div>
+    <div class="hero-art" aria-label="Winter clothing illustration">
+      <div class="coat-icon" aria-hidden="true">🧥</div>
+      <div class="hero-label">WINTER EDITION</div>
+    </div>
+  </section>
+
+  <section class="trust-row" aria-label="Store information">
+    <div class="trust"><strong>Easy Ordering</strong>Order on WhatsApp</div>
+    <div class="trust"><strong>COD Availability</strong>Confirm before dispatch</div>
+    <div class="trust"><strong>Winter Essentials</strong>Jackets & coats</div>
+  </section>
+
+  <main>
+    <section id="products">
+      <div class="section-head">
+        <div>
+          <h2>Shop Winter Wear</h2>
+          <p>Demo items — replace these with current Markaz product details before selling.</p>
+        </div>
+      </div>
+      <div class="grid" id="productGrid">
+        <article class="product">
+          <div class="product-art"><span class="tag">DEMO PRODUCT</span><span aria-hidden="true">🧥</span></div>
+          <div class="product-info">
+            <h3>Classic Black Jacket</h3>
+            <p class="description">Everyday winter style. Add the actual material and features from Markaz.</p>
+            <div class="price-row"><span class="price">Rs. 2,499</span><span class="old-price">Demo price</span></div>
+            <button class="btn" type="button" onclick="chooseProduct('Classic Black Jacket',2499)">Order this item</button>
+          </div>
+        </article>
+        <article class="product">
+          <div class="product-art brown"><span class="tag">DEMO PRODUCT</span><span aria-hidden="true">🧥</span></div>
+          <div class="product-info">
+            <h3>Brown Leather-Style Coat</h3>
+            <p class="description">Demo listing only. Confirm whether the Markaz item is genuine leather or synthetic.</p>
+            <div class="price-row"><span class="price">Rs. 3,499</span><span class="old-price">Demo price</span></div>
+            <button class="btn" type="button" onclick="chooseProduct('Brown Leather-Style Coat',3499)">Order this item</button>
+          </div>
+        </article>
+        <article class="product">
+          <div class="product-art gray"><span class="tag">DEMO PRODUCT</span><span aria-hidden="true">🧥</span></div>
+          <div class="product-info">
+            <h3>Casual Puffer Jacket</h3>
+            <p class="description">A sample winterwear product. Replace with the real photo, sizes and price.</p>
+            <div class="price-row"><span class="price">Rs. 2,899</span><span class="old-price">Demo price</span></div>
+            <button class="btn" type="button" onclick="chooseProduct('Casual Puffer Jacket',2899)">Order this item</button>
+          </div>
+        </article>
+      </div>
+      <div class="notice"><strong>Important:</strong> These are fictional demo products and prices, not live Markaz listings. Do not accept customer orders for them until you replace the details with real products and verify price, stock, sizes, delivery charges and COD availability in Markaz.</div>
+    </section>
+
+    <section class="order-section" id="order">
+      <aside class="order-aside">
+        <div class="eyebrow">Simple checkout</div>
+        <h2 style="margin-top:8px">Order on WhatsApp</h2>
+        <p>Fill in your contact details and delivery address. When you tap the button, WhatsApp opens with your order message ready to send.</p>
+        <ol class="steps">
+          <li>Choose a product, size and quantity.</li>
+          <li>Enter your name, phone and complete address.</li>
+          <li>Send the prepared order message in WhatsApp.</li>
+          <li>Wait for confirmation before the order is processed.</li>
+        </ol>
+        <p class="small">This starter does not take online payments or store customer details on a server.</p>
+      </aside>
+
+      <form class="form-card" id="orderForm">
+        <h2 style="font-size:1.35rem;margin-bottom:14px">Your delivery details</h2>
+        <div class="field">
+          <label for="product">Product</label>
+          <select id="product" required>
+            <option value="Classic Black Jacket" data-price="2499">Classic Black Jacket — Rs. 2,499 (demo)</option>
+            <option value="Brown Leather-Style Coat" data-price="3499">Brown Leather-Style Coat — Rs. 3,499 (demo)</option>
+            <option value="Casual Puffer Jacket" data-price="2899">Casual Puffer Jacket — Rs. 2,899 (demo)</option>
+          </select>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="size">Size</label>
+            <select id="size" required>
+              <option value="">Select size</option><option>Small (S)</option><option>Medium (M)</option><option>Large (L)</option><option>XL</option><option>XXL</option><option>Confirm size first</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="quantity">Quantity</label>
+            <select id="quantity" required>
+              <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+            </select>
+          </div>
+        </div>
+        <div class="selected-summary" id="priceSummary">Demo subtotal: Rs. 2,499 — delivery charges not included.</div>
+        <div class="field">
+          <label for="customerName">Full name</label>
+          <input id="customerName" autocomplete="name" required maxlength="80" placeholder="Customer ka poora naam">
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="customerPhone">Customer phone</label>
+            <input id="customerPhone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="20" placeholder="03XX XXXXXXX">
+          </div>
+          <div class="field">
+            <label for="city">City</label>
+            <input id="city" required maxlength="60" placeholder="Misal: Multan">
+          </div>
+        </div>
+        <div class="field">
+          <label for="address">Complete delivery address</label>
+          <textarea id="address" autocomplete="street-address" required maxlength="350" placeholder="House number, street, area, landmark"></textarea>
+        </div>
+        <div class="field">
+          <label for="notes">Extra notes (optional)</label>
+          <textarea id="notes" maxlength="250" placeholder="Colour preference ya delivery instructions"></textarea>
+        </div>
+        <button class="btn" type="submit">Send Order to WhatsApp</button>
+        <p class="small" style="margin-bottom:0;margin-top:10px">By continuing, you agree to send these order details to the store on WhatsApp. No order is confirmed until the store replies.</p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div><strong>Winter Collection PK</strong></div>
+    <div>Winter fashion store • Pakistan</div>
+    <div class="small" style="margin-top:8px">Starter template. Replace demo listings and policies before publishing for real customers.</div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/923378948684" target="_blank" rel="noopener">WhatsApp Us</a>
+
+  <script>
+    // Store WhatsApp number in international format, without "+" or spaces.
+    const STORE_WHATSAPP = "923378948684";
+
+    const productSelect = document.getElementById("product");
+    const quantitySelect = document.getElementById("quantity");
+    const priceSummary = document.getElementById("priceSummary");
+
+    function selectedPrice() {
+      const option = productSelect.options[productSelect.selectedIndex];
+      return Number(option.dataset.price || 0);
+    }
+    function updateSummary() {
+      const subtotal = selectedPrice() * Number(quantitySelect.value || 1);
+      priceSummary.textContent = "Demo subtotal: Rs. " + subtotal.toLocaleString("en-PK") +
+        " — delivery charges not included. Final price must be confirmed.";
+    }
+    function chooseProduct(name, price) {
+      for (const option of productSelect.options) {
+        if (option.value === name) {
+          productSelect.value = name;
+          break;
+        }
+      }
+      updateSummary();
+      document.getElementById("order").scrollIntoView({ behavior: "smooth" });
+    }
+    productSelect.addEventListener("change", updateSummary);
+    quantitySelect.addEventListener("change", updateSummary);
+
+    document.getElementById("orderForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const name = document.getElementById("customerName").value.trim();
+      const phone = document.getElementById("customerPhone").value.trim();
+      const city = document.getElementById("city").value.trim();
+      const address = document.getElementById("address").value.trim();
+      const notes = document.getElementById("notes").value.trim();
+      const product = productSelect.value;
+      const size = document.getElementById("size").value;
+      const quantity = Number(quantitySelect.value);
+      const subtotal = selectedPrice() * quantity;
+
+      if (!name || !phone || !city || !address || !size) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+
+      const message = [
+        "NEW ORDER — Winter Collection PK",
+        "",
+        "Product: " + product,
+        "Size: " + size,
+        "Quantity: " + quantity,
+        "Demo subtotal: Rs. " + subtotal.toLocaleString("en-PK"),
+        "Delivery charges: To be confirmed",
+        "",
+        "Customer name: " + name,
+        "Customer phone: " + phone,
+        "City: " + city,
+        "Delivery address: " + address,
+        "Extra notes: " + (notes || "None"),
+        "",
+        "Please confirm stock, final price, delivery charges and COD availability before processing.",
+        "Note: This website currently uses demo products/prices."
+      ].join("\n");
+
+      const url = "https://wa.me/" + STORE_WHATSAPP + "?text=" + encodeURIComponent(message);
+      window.location.href = url;
+    });
+
+    updateSummary();
+  </script>
+</body>
+</html>
